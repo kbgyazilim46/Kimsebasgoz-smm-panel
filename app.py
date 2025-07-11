@@ -66,7 +66,12 @@ def panel():
         link = request.form.get("link")
         amount = request.form.get("amount")
         email = request.form.get("email")
-        
+
+        # Siparişi dosyaya yaz
+    with open("siparisler.txt", "a", encoding="utf-8") as f:
+        f.write(f"{service},{amount},{link},{email}\n")
+
+    message = f"✅ Sipariş alındı: {service} - {amount} adet ({link})"
         # Burada siparişi kaydedebilirsin, veri tabanına yazmak gibi
 
         message = f"✅ Sipariş alındı: {service} - {amount} adet ({link})"
