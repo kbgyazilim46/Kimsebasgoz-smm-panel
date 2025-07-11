@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string, request
+from flask import Flask import requests, render_template_string, request
 
 app = Flask(__name__)
 
@@ -72,7 +72,17 @@ def panel():
         f.write(f"{service},{amount},{link},{email}\n")
 
     message = f"✅ Sipariş alındı: {service} - {amount} adet ({link})"
-        # Burada siparişi kaydedebilirsin, veri tabanına yazmak gibi
+       
+    def send_telegram(message):
+    TOKEN = '8103484229:AAFn_a84yjG2Ed2LDWDLFULoFPKljtySEe0'  # örn: '123456789:ABC...'
+    CHAT_ID = '5356846993'  # örn: '586123456'
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    data = {
+        "chat_id": CHAT_ID,
+        "text": message
+    }
+    requests.post(url, data=data)
+    # Burada siparişi kaydedebilirsin, veri tabanına yazmak gibi
 
         message = f"✅ Sipariş alındı: {service} - {amount} adet ({link})"
 
